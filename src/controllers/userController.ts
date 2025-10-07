@@ -62,8 +62,11 @@ export const deleteUserController = async (req: Request, res: Response) => {
     }
     await deleteUser(userId);
     res.status(204).send();
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    res.status(400).json({ error: "Erro ao deletar usuário" });
+    if (error.message === "Usuário não encontrado") {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 };

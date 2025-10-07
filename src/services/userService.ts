@@ -35,7 +35,14 @@ export const updateUser = async (id: string, data: UpdateUserData) => {
 };
 
 export const deleteUser = async (id: string) => {
-  await prisma.user.delete({
-    where: { id },
-  });
+  try {
+    await prisma.user.delete({
+      where: { id },
+    });
+  } catch (error: any) {
+    if (error.code === "P2025") {
+      throw new Error("Usuário não encontrado");
+    }
+    throw error;
+  }
 };
