@@ -1,76 +1,76 @@
 # 🚀 Task Management API
 
-Uma API REST completa para gerenciamento de usuários e tarefas, construída com **Node.js**, **TypeScript**, **Prisma** e **PostgreSQL**.
+A complete REST API for user and task management, built with **Node.js**, **TypeScript**, **Prisma** and **PostgreSQL**.
 
-## 📋 Funcionalidades
+## 📋 Features
 
-### 👥 Usuários
+### 👥 Users
 
-- ✅ Criar usuário
-- ✅ Listar todos os usuários
-- ✅ Buscar usuário por ID
-- ✅ Atualizar usuário
-- ✅ Deletar usuário
+- ✅ Create user
+- ✅ List all users
+- ✅ Get user by ID
+- ✅ Update user
+- ✅ Delete user
 
-### 📝 Tarefas
+### 📝 Tasks
 
-- ✅ Criar tarefa para um usuário
-- ✅ Listar todas as tarefas
-- ✅ Buscar tarefa por ID
-- ✅ Atualizar tarefa (status, título, descrição)
-- ✅ Deletar tarefa
-- ✅ Listar tarefas de um usuário específico
+- ✅ Create task for a user
+- ✅ List all tasks
+- ✅ Get task by ID
+- ✅ Update task (status, title, description)
+- ✅ Delete task
+- ✅ List tasks from a specific user
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
-- **Node.js** - Runtime JavaScript
-- **TypeScript** - Tipagem estática
-- **Express** - Framework web
-- **Prisma** - ORM e query builder
-- **PostgreSQL** - Banco de dados
-- **Zod** - Validação de dados
-- **TSX** - Execução TypeScript
+- **Node.js** - JavaScript runtime
+- **TypeScript** - Static typing
+- **Express** - Web framework
+- **Prisma** - ORM and query builder
+- **PostgreSQL** - Database
+- **Zod** - Data validation
+- **TSX** - TypeScript execution
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 src/
-├── config/         # Configurações (database)
-├── controllers/    # Controladores das rotas
-├── middlewares/    # Middlewares (validação)
-├── routes/         # Definição das rotas
-├── schemas/        # Schemas de validação (Zod)
-├── services/       # Lógica de negócio
-├── types/          # Interfaces TypeScript
-└── server.ts       # Entrada da aplicação
+├── config/         # Configurations (database)
+├── controllers/    # Route controllers
+├── middlewares/    # Middlewares (validation)
+├── routes/         # Route definitions
+├── schemas/        # Validation schemas (Zod)
+├── services/       # Business logic
+├── types/          # TypeScript interfaces
+└── server.ts       # Application entry point
 ```
 
-## ⚡ Como Rodar o Projeto
+## ⚡ How to Run the Project
 
-### 📋 Pré-requisitos
+### 📋 Prerequisites
 
-- **Node.js** (versão 18+ recomendada)
-- **PostgreSQL** (local ou remoto)
+- **Node.js** (version 18+ recommended)
+- **PostgreSQL** (local or remote)
 - **Git**
 
-### 🚀 Instalação
+### 🚀 Installation
 
-1. **Clone o repositório**
+1. **Clone the repository**
 
 ```bash
-git clone <url-do-seu-repositorio>
+git clone <your-repository-url>
 cd project
 ```
 
-2. **Instale as dependências**
+2. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-3. **Configure o banco de dados**
-   - Crie um arquivo `.env` na raiz do projeto
-   - Adicione sua string de conexão PostgreSQL:
+3. **Configure the database**
+   - Create an `.env` file in the project root
+   - Add your PostgreSQL connection string:
 
 **Para PostgreSQL local:**
 
@@ -84,78 +84,78 @@ DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
 DATABASE_URL="postgresql://username:password@ep-xxxxx-pooler.sa-east-1.aws.neon.tech/database?sslmode=require&channel_binding=require"
 ```
 
-> ⚠️ **Substitua** `username`, `password`, `ep-xxxxx` e `database` pelos seus dados reais
+> ⚠️ **Replace** `username`, `password`, `ep-xxxxx` and `database` with your actual data
 
-4. **Execute as migrações do banco**
+4. **Run database migrations**
 
 ```bash
 npx prisma migrate dev
 ```
 
-5. **Gere o cliente Prisma**
+5. **Generate Prisma client**
 
 ```bash
 npx prisma generate
 ```
 
-6. **Inicie o servidor**
+6. **Start the server**
 
 ```bash
 npm run dev
 ```
 
-O servidor estará rodando em `http://localhost:3000` 🎉
+The server will be running at `http://localhost:3000` 🎉
 
-## 📚 Documentação da API
+## 📚 API Documentation
 
 ### 👥 Usuários
 
-| Método   | Endpoint           | Descrição                 |
-| -------- | ------------------ | ------------------------- |
-| `POST`   | `/users`           | Criar usuário             |
-| `GET`    | `/users`           | Listar usuários           |
-| `GET`    | `/users/:id`       | Buscar usuário por ID     |
-| `PUT`    | `/users/:id`       | Atualizar usuário         |
-| `DELETE` | `/users/:id`       | Deletar usuário           |
-| `GET`    | `/users/:id/tasks` | Listar tarefas do usuário |
-| `POST`   | `/users/:id/tasks` | Criar tarefa para usuário |
+| Method   | Endpoint           | Description          |
+| -------- | ------------------ | -------------------- |
+| `POST`   | `/users`           | Create user          |
+| `GET`    | `/users`           | List users           |
+| `GET`    | `/users/:id`       | Get user by ID       |
+| `PUT`    | `/users/:id`       | Update user          |
+| `DELETE` | `/users/:id`       | Delete user          |
+| `GET`    | `/users/:id/tasks` | List user tasks      |
+| `POST`   | `/users/:id/tasks` | Create task for user |
 
 ### 📝 Tarefas
 
-| Método   | Endpoint     | Descrição               |
-| -------- | ------------ | ----------------------- |
-| `GET`    | `/tasks`     | Listar todas as tarefas |
-| `GET`    | `/tasks/:id` | Buscar tarefa por ID    |
-| `PUT`    | `/tasks/:id` | Atualizar tarefa        |
-| `DELETE` | `/tasks/:id` | Deletar tarefa          |
+| Method   | Endpoint     | Description    |
+| -------- | ------------ | -------------- |
+| `GET`    | `/tasks`     | List all tasks |
+| `GET`    | `/tasks/:id` | Get task by ID |
+| `PUT`    | `/tasks/:id` | Update task    |
+| `DELETE` | `/tasks/:id` | Delete task    |
 
-### 📄 Exemplos de Uso
+### 📄 Usage Examples
 
-#### Criar Usuário
+#### Create User
 
 ```bash
 POST /users
 Content-Type: application/json
 
 {
-  "name": "João Silva",
-  "email": "joao@email.com"
+  "name": "John Doe",
+  "email": "john@email.com"
 }
 ```
 
-#### Criar Tarefa para Usuário
+#### Create Task for User
 
 ```bash
 POST /users/:userId/tasks
 Content-Type: application/json
 
 {
-  "title": "Estudar TypeScript",
-  "description": "Aprender validação com Zod"
+  "title": "Study TypeScript",
+  "description": "Learn Zod validation"
 }
 ```
 
-#### Atualizar Status da Tarefa
+#### Update Task Status
 
 ```bash
 PUT /tasks/:taskId
@@ -166,32 +166,32 @@ Content-Type: application/json
 }
 ```
 
-## ⚙️ Scripts Disponíveis
+## ⚙️ Available Scripts
 
-- `npm run dev` - Inicia o servidor em modo desenvolvimento
-- `npx prisma studio` - Abre interface visual do banco
-- `npx prisma migrate dev` - Executa migrações
-- `npx prisma generate` - Gera cliente Prisma
+- `npm run dev` - Start server in development mode
+- `npx prisma studio` - Open visual database interface
+- `npx prisma migrate dev` - Run migrations
+- `npx prisma generate` - Generate Prisma client
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
 
-O projeto segue os princípios de **Clean Architecture** com separação clara de responsabilidades:
+The project follows **Clean Architecture** principles with clear separation of responsibilities:
 
-- **Controllers**: Recebem requests HTTP e retornam responses
-- **Services**: Contêm a lógica de negócio
-- **Middlewares**: Validação e processamento de requests
-- **Types**: Definições TypeScript para type safety
-- **Schemas**: Validação de dados com Zod
+- **Controllers**: Receive HTTP requests and return responses
+- **Services**: Contain business logic
+- **Middlewares**: Validation and request processing
+- **Types**: TypeScript definitions for type safety
+- **Schemas**: Data validation with Zod
 
-## 🔒 Validações
+## 🔒 Validations
 
-- **Usuários**: Nome (mínimo 2 caracteres) e email válido
-- **Tarefas**: Título obrigatório, descrição opcional, status enum
-- **Middlewares**: Validação automática com retorno de erros detalhados
+- **Users**: Name (minimum 2 characters) and valid email
+- **Tasks**: Required title, optional description, status enum
+- **Middlewares**: Automatic validation with detailed error responses
 
-## 🗄️ Banco de Dados
+## 🗄️ Database
 
-### Modelo de Dados
+### Data Model
 
 ```prisma
 model User {
@@ -215,12 +215,8 @@ model Task {
 
 ## 🚀 Deploy
 
-Para deploy em produção:
+For production deployment:
 
-1. Configure as variáveis de ambiente no seu provedor
-2. Execute `npx prisma migrate deploy`
-3. Inicie com `npm start` (adicionar script se necessário)
-
----
-
-**Desenvolvido com ❤️ usando as melhores práticas de desenvolvimento**
+1. Configure environment variables in your provider
+2. Run `npx prisma migrate deploy`
+3. Start with `npm start` (add script if needed)

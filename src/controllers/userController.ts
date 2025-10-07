@@ -8,7 +8,7 @@ export const createUserController = async (req: Request, res: Response) => {
     res.status(201).json(user);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error: "Erro ao criar usuário" });
+    res.status(400).json({ error: "Failed to create user" });
   }
 };
 
@@ -18,7 +18,7 @@ export const getAllUsersController = async (req: Request, res: Response) => {
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao buscar usuários" });
+    res.status(500).json({ error: "Failed to fetch users" });
   }
 };
 
@@ -26,16 +26,16 @@ export const getUserByIdController = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     if (typeof userId !== "string") {
-      return res.status(400).json({ error: "ID do usuário não fornecido" });
+      return res.status(400).json({ error: "User ID is required" });
     }
     const user = await getUserById(userId);
     if (!user) {
-      return res.status(404).json({ error: "Usuário não encontrado" });
+      return res.status(404).json({ error: "User not found" });
     }
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao buscar usuário" });
+    res.status(500).json({ error: "Failed to fetch user" });
   }
 };
 
@@ -44,13 +44,13 @@ export const updateUserController = async (req: Request, res: Response) => {
     const { name, email } = req.body;
     const userId = req.params.id;
     if (!userId) {
-      return res.status(400).json({ error: "ID do usuário não fornecido" });
+      return res.status(400).json({ error: "User ID is required" });
     }
     const updatedUser = await updateUser(userId, { name, email });
     res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error: "Erro ao atualizar usuário" });
+    res.status(400).json({ error: "Failed to update user" });
   }
 };
 
@@ -58,18 +58,18 @@ export const deleteUserController = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     if (!userId) {
-      return res.status(400).json({ error: "ID do usuário não fornecido" });
+      return res.status(400).json({ error: "User ID is required" });
     }
     await deleteUser(userId);
     res.status(204).send();
   } catch (error: any) {
     console.error(error);
-    if (error.message === "Usuário não encontrado") {
-      return res.status(404).json({ error: "Usuário não encontrado" });
+    if (error.message === "User not found") {
+      return res.status(404).json({ error: "User not found" });
     }
-    if (error.message === "Não é possível deletar usuário com tasks associadas") {
-      return res.status(409).json({ error: "Não é possível deletar usuário com tasks associadas" });
+    if (error.message === "Cannot delete user with associated tasks") {
+      return res.status(409).json({ error: "Cannot delete user with associated tasks" });
     }
-    res.status(500).json({ error: "Erro interno do servidor" });
+    res.status(500).json({ error: "Internal server error" });
   }
 };

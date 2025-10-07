@@ -45,10 +45,10 @@ export const deleteUser = async (id: string) => {
     });
   } catch (error: any) {
     if (error.code === "P2025") {
-      throw new Error("Usuário não encontrado");
+      throw new Error("User not found");
     }
     if (error.code === "P2003") {
-      throw new Error("Não é possível deletar usuário com tasks associadas");
+      throw new Error("Cannot delete user with associated tasks");
     }
     throw error;
   }
