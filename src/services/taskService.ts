@@ -15,13 +15,32 @@ export const createTask = async (data: CreateTaskData) => {
 };
 
 export const getAllTasks = async () => {
-  const tasks = await prisma.task.findMany();
+  const tasks = await prisma.task.findMany({
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
   return tasks;
 };
 
 export const getTaskById = async (id: string) => {
   const task = await prisma.task.findUnique({
     where: { id },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
   });
   return task;
 };
