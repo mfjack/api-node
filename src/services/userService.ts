@@ -36,12 +36,19 @@ export const updateUser = async (id: string, data: UpdateUserData) => {
 
 export const deleteUser = async (id: string) => {
   try {
+    await prisma.task.deleteMany({
+      where: { userId: id },
+    });
+
     await prisma.user.delete({
       where: { id },
     });
   } catch (error: any) {
     if (error.code === "P2025") {
       throw new Error("Usuário não encontrado");
+    }
+    if (error.code === "P2003") {
+      throw new Error("Não é possível deletar usuário com tasks associadas");
     }
     throw error;
   }

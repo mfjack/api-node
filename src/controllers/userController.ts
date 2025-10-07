@@ -67,6 +67,9 @@ export const deleteUserController = async (req: Request, res: Response) => {
     if (error.message === "Usuário não encontrado") {
       return res.status(404).json({ error: "Usuário não encontrado" });
     }
+    if (error.message === "Não é possível deletar usuário com tasks associadas") {
+      return res.status(409).json({ error: "Não é possível deletar usuário com tasks associadas" });
+    }
     res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
